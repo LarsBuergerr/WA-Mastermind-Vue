@@ -4,7 +4,7 @@
 
 
 <template>
-  <RouterView />
+  <RouterView/>
 </template>
 
 <style lang="less" scoped>

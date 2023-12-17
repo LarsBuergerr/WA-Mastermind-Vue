@@ -23,6 +23,7 @@
 
 <script>
 import $ from 'jquery';
+import {post} from '../main.js';
 
 export default {
     name: 'GameBoard',
@@ -31,7 +32,7 @@ export default {
         return {
             stoneArray: ["E", "E", "E", "E"],
             eventListeners: [],
-            socket : undefined
+            socket : undefined,
         }
     },
 
@@ -173,6 +174,9 @@ export default {
             },
 
             updateGameField(data) {
+            if(data === undefined) {
+                console.log("data undefined");
+                return;}
             // Update the turn and matrix rows
             var currentTurn = data.turn;
             // Update matrix rows
@@ -253,13 +257,8 @@ export default {
             },
 
             displayGame() {
-            $.ajax({
-                url: '/game/displayGame',
-                type: 'GET',
-                success: data => {
+                let data = this.getJSON("game/displayGame")
                 this.updateGameField(data);
-                } 
-            });
             },
         /* ------------------------- Multiplayer ------------------------- */
 
@@ -412,6 +411,15 @@ export default {
                 this.updateGameField(data);
             }
         },
+        getJSON(url) {
+            let data = post(url);
+            if (data.ok) {
+                console.log("page loaded");
+                return data;
+            } else {
+                console.log("page failed loading");
+            }
+        }
     },
 
     created() {
