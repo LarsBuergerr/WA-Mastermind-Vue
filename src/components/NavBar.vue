@@ -1,7 +1,7 @@
 <template>
     <nav class="navbar navbar-dark bg-dark fixed-top">
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-        <img class="navbar-icon" src="/assets/images/stones/stone_R_nav.png" alt="Menu">
+        <img class="navbar-icon" src="/images/stones/stone_R_nav.png" alt="Menu">
       </button>
     </nav>
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
@@ -13,31 +13,31 @@
         <ul class="navbar-nav">
           <li class="nav-item">
             <a class="nav-link text-dark" @click='route("/index")'>
-              <img src="/assets/images/hintstones/hstone_R.png" class="nav-icon">
+              <img src="/images/hintstones/hstone_R.png" class="nav-icon">
               Home
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-dark" @click='route("/game_multiplayer/createMultiplayer")'>
-              <img src ="/assets/images/stones/stone_R.png" class="nav-icon">
+              <img src ="/images/stones/stone_R.png" class="nav-icon">
               Create Multiplayer
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-dark" @click='route("/game_multiplayer/joinMultiplayer")'>
-              <img src="/assets/images/stones/stone_Y.png" class="nav-icon">
+              <img src="/images/stones/stone_Y.png" class="nav-icon">
               Join Multiplayer
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-dark" @click='route("/help")'>
-              <img src="/assets/images/stones/stone_P.png" class="nav-icon">
+              <img src="/images/stones/stone_P.png" class="nav-icon">
               Help
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link text-dark" @click='route("/about")'>
-              <img src="/assets/images/stones/stone_B.png" class="nav-icon">
+              <img src="/images/stones/stone_B.png" class="nav-icon">
               About
             </a>
           </li>
@@ -59,12 +59,6 @@ export default {
 </script>
 
 <style>
-/* Apply a background color to the body */
-body {
-  background-color: rgb(41, 41, 41);
-  font-family: Arial, sans-serif;
-}
-
 /* Apply settings so navbar is transparent */
 .navbar {
   z-index: 9999;

@@ -2,7 +2,7 @@
     <div class="game">
       <div class="header-container">
         <div class="top-bar"> 
-          <img src="/assets/images/mastermind_header_cropped.png" class="header-image">
+          <img src="/images/mastermind_header_cropped.png" class="header-image">
         </div>
         <div class="center" style="text-align: center;">
             <div class="game-container">
@@ -164,7 +164,7 @@ export default {
                 this.updateGameField(data);
                 // Change the header image back to the original
                 $('.header-image').fadeOut('slow', function() {
-                    $(this).attr('src', '/assets/images/mastermind_header_cropped.png').fadeIn('slow');
+                    $(this).attr('src', '/images/mastermind_header_cropped.png').fadeIn('slow');
                 });
                 // Change the function of the "Place Stone" button back to place stones
                 $('.placeStonesButton').off('click').text('Place Stones');
@@ -434,3 +434,215 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+/* body */
+body{
+  background-color: rgb(41, 41, 41);
+  font-family: Arial, sans-serif;
+}
+
+/* Style the header image */
+.header-image {
+  margin-top: 2rem;
+  max-width: 50rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 1;
+}
+
+/* sparticles */
+.sparticles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* This places the canvas below other content */
+}
+
+/* game container */
+.game-container {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.game-box,
+.hintstone-box {
+  background-color: rgb(87, 87, 87);
+  border-radius: 1rem;
+  padding: 1rem;
+  display: inline-block;
+  margin: 0 10px; /* Add margin between the two boxes */
+  z-index: 1;
+  flex-direction: row;
+}
+
+.game-row {
+  display: flex;
+}
+
+/* Style the stones */
+.stone-cell,
+.stone-cell-locked,
+.hintstone-cell {
+  width: 3rem;
+  margin: 0.2rem;
+  border-radius: 50%;                 /* Make the cell round */
+  transition: background-color 0.3s;  /* Smooth color transition on hover */
+  cursor: ns-resize;
+}
+
+.stone-cell:hover {
+  animation: glow 1s infinite alternate, scrollIndication 1s infinite linear;
+}
+
+
+/* place stones button animation */
+.placeStonesButton {
+  width: 15rem;
+  height: 3rem;
+  border: none;
+  outline: none;
+  color: #fff;
+  background: #111;
+  cursor: pointer;
+  font-size: 1.2em;
+  font-weight: 700;
+  position: relative;
+  z-index: 1;
+  border-radius: 1rem;
+  margin: auto;
+  display: block;
+}
+
+.placeStonesButton:before {
+  content: '';
+  background:  linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #002bff, #7a00ff, #ff00c8, #ff0000);
+  position: absolute;
+  top: -2px;
+  left:-2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+  border-radius: 10px;
+}
+
+.placeStonesButton:active {
+  color: rgb(87, 87, 87);
+}
+
+.placeStonesButton:active:after {
+  background: transparent;
+}
+
+.placeStonesButton:hover:before {
+  opacity: 1;
+}
+
+.placeStonesButton:after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgb(87, 87, 87);;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+/* Style the error popup */
+.error-popup {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background-color: red;
+  color: white;
+  padding: 1rem;
+  border-radius: 5px;
+  opacity: 1;
+  transition: opacity 1s;
+}
+
+
+/* Keyframe Animation glow */
+@keyframes glowing {
+  0% { background-position: 0 0; }
+  50% { background-position: 400% 0; }
+  100% { background-position: 0 0; }
+}
+
+@keyframes glow {
+  0% {
+    background-color: transparent;
+    box-shadow: 0 0 5px 3px rgba(255, 0, 0, 0.5);
+  }
+  50% {
+    background-color: transparent;
+    box-shadow: 0 0 10px 5px rgba(0, 21, 255, 0.9);
+  }
+  100% {
+    background-color: transparent;
+    box-shadow: 0 0 15px 3px rgba(48, 0, 121, 0.5);
+  }
+}
+
+@keyframes scrollIndication {
+  0% {
+    transform: translateY(-2px);
+  }
+  50% {
+    transform: translateY(2px);
+  }
+  100% {
+    transform: translateY(-2px);
+  }
+}
+
+/* Increase font size and icon size on small screens */
+@media (max-width: 1080px) {
+
+  .logo-img {
+    margin-top: 7.5rem;
+    max-width: 60rem;
+  }
+
+  /* Style the stones */
+  .stone-cell,
+  .stone-cell-locked,
+  .hintstone-cell {
+    width: 6.5rem;
+  }
+
+  .placeStonesButton{
+    width: 55rem;
+    height: 10rem;
+    font-size: 5em;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .error-popup {
+    width: 55rem; /* Increase the width */
+    font-size: 2.8rem;;
+    height: auto; /* Increase the height */
+    position: relative; /* Set the position to relative */
+    margin: auto; /* Center the popup */
+    bottom: 0; /* Position the popup at the bottom */
+    right: auto;
+    margin-bottom: 2rem;
+  }
+}
+</style>

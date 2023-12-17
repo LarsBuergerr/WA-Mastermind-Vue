@@ -1,18 +1,18 @@
 <template>
     <div class="banner">
-      <img src="/assets/images/online_banner.png" class="banner_image">
+      <img src="/images/online_banner.png" class="banner_image">
     </div>
     <div class="stones">
-      <img src="/assets/images/stones/stone_win.png" class="stone_win round_image">
-      <img src="/assets/images/stones/stone_B.png" class="stone_B round_image">
-      <img src="/assets/images/stones/stone_G.png" class="stone_G round_image">
-      <img src="/assets/images/stones/stone_R.png" class="stone_R round_image">
-      <img src="/assets/images/stones/stone_Y.png" class="stone_Y round_image">
-      <img src="/assets/images/stones/stone_W.png" class="stone_W round_image">
-      <img src="/assets/images/stones/stone_P.png" class="stone_P round_image">
+      <img src="/images/stones/stone_win.png" class="stone_win round_image">
+      <img src="/images/stones/stone_B.png" class="stone_B round_image">
+      <img src="/images/stones/stone_G.png" class="stone_G round_image">
+      <img src="/images/stones/stone_R.png" class="stone_R round_image">
+      <img src="/images/stones/stone_Y.png" class="stone_Y round_image">
+      <img src="/images/stones/stone_W.png" class="stone_W round_image">
+      <img src="/images/stones/stone_P.png" class="stone_P round_image">
       <h2 class="front_text">Can you guess the code?</h2>
     </div>
-    <img src="/assets/images/arrow.png" class="arrow"> 
+    <img src="/images/arrow.png" class="arrow"> 
 </template>
 
 <script>
@@ -77,7 +77,7 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 
 .round_image {
   border-radius: 50%;
