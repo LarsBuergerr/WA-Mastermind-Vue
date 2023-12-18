@@ -1,49 +1,49 @@
 <template>
-    <nav class="navbar navbar-dark bg-dark fixed-top">
-      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-        <img class="navbar-icon" src="/images/stones/stone_R_nav.png" alt="Menu">
-      </button>
-    </nav>
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasRightLabel">Menu</h5>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-      </div>
-      <div class="offcanvas-body">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link text-dark" @click='route("/index")'>
-              <img src="/images/hintstones/hstone_R.png" class="nav-icon">
-              Home
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-dark" @click='route("/game_multiplayer/createMultiplayer")'>
-              <img src ="/images/stones/stone_R.png" class="nav-icon">
-              Create Multiplayer
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-dark" @click='route("/game_multiplayer/joinMultiplayer")'>
-              <img src="/images/stones/stone_Y.png" class="nav-icon">
-              Join Multiplayer
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-dark" @click='route("/help")'>
-              <img src="/images/stones/stone_P.png" class="nav-icon">
-              Help
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-dark" @click='route("/about")'>
-              <img src="/images/stones/stone_B.png" class="nav-icon">
-              About
-            </a>
-          </li>
-        </ul>
-      </div>
+  <nav class="navbar navbar-dark bg-dark fixed-top">
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+      <img class="navbar-icon" src="/images/stones/stone_R_nav.png" alt="Menu">
+    </button>
+  </nav>
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasRightLabel">Menu</h5>
+      <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
+    <div class="offcanvas-body">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link text-dark" @click='route("/index")'>
+            <img src="/images/hintstones/hstone_R.png" class="nav-icon">
+            Home
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" @click='route("/game_multiplayer/createMultiplayer")'>
+            <img src ="/images/stones/stone_R.png" class="nav-icon">
+            Create Multiplayer
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" @click='route("/game_multiplayer/joinMultiplayer")'>
+            <img src="/images/stones/stone_Y.png" class="nav-icon">
+            Join Multiplayer
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" @click='route("/help")'>
+            <img src="/images/stones/stone_P.png" class="nav-icon">
+            Help
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-dark" @click='route("/about")'>
+            <img src="/images/stones/stone_B.png" class="nav-icon">
+            About
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -58,7 +58,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 /* Apply settings so navbar is transparent */
 .navbar {
   z-index: 9999;
@@ -204,5 +204,5 @@ export default {
     border: none;
     background-color: transparent;
   }
-}
+} 
 </style>

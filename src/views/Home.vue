@@ -1,10 +1,11 @@
 <template>
-<div class="container-fluid full-layout" id="container_all">
-    <NavBar/>
-    <IndexStones/>
-    <GameBoard/>
-</div>
-
+<body>
+  <div class="container-fluid full-layout" id="container_all">
+      <NavBar/>
+      <IndexStones/>
+      <GameBoard/>
+  </div>
+</body>
 </template>
 
 <script>
@@ -23,13 +24,8 @@ export default {
 </script>
 
 <style scoped>
-.container-fluid {
-    padding: 0;
-    margin: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    position: relative;
-    background-color: rgb(41, 41, 41);
+body {
+  background-color: rgb(41, 41, 41);
+  font-family: Arial, sans-serif;
 }
 </style>
