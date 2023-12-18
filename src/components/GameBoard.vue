@@ -122,27 +122,24 @@ export default {
                 this.createErrorPopup("Please fill all stones before placing them!");
             } else {
                 var stoneArrayString = _this.stoneArray.join("");
+
                 get('/game/placeStones/' + stoneArrayString).then(data => {
                     console.log(data);
                     // Check data if game is over or not
                     if (data.status === "win") {  // ----- WIN GAME -----
                     $('.header-image').fadeOut('slow', function () {
-                        $(this).attr('src', '/assets/images/won.png').fadeIn('slow');
+                        $(this).attr('src', '/images/won.png').fadeIn('slow');
                     });
                     console.log("You won!");
-                    this.renderEndGameField(data.game, '/assets/images/stones/stone_win.png', '/assets/images/hintstones/hstone_R.png');
+                    this.renderEndGameField(data.game, '/images/stones/stone_win.png', '/assets/images/hintstones/hstone_R.png');
                     // Change the function of the "Place Stone" button to start a new game
                     $('.placeStonesButton').off('click').on('click', this.startNewGame).text('Start New Game');
                     } else if (data.status === "lose") {  // ----- LOSE GAME -----
                     $('.header-image').fadeOut('slow', function () {
-                        $(this).attr('src', '/assets/images/loose.png').fadeIn('slow');
+                        $(this).attr('src', '/images/loose.png').fadeIn('slow');
                     });
-                    $('<link>')
-                        .appendTo('head')
-                        .attr({type : 'text/css', rel : 'stylesheet'})
-                        .attr('href', '/assets/stylesheets/displayLoosePage.css');  
                     console.log("You lost!");
-                    this.renderEndGameField(data.game, '/assets/images/stones/stone_R.png', '/assets/images/hintstones/hstone_E.png');
+                    this.renderEndGameField(data.game, '/images/stones/stone_R.png', '/images/hintstones/hstone_E.png');
                     // Change the function of the "Place Stone" button to start a new game
                     $('.placeStonesButton').off('click').on('click', this.startNewGame).text('Start New Game');
                     //ameInProgress = false;
@@ -154,7 +151,7 @@ export default {
             },
 
             startNewGame() {
-            $.ajax({
+              $.ajax({
                 url: '/game/createGame',
                 type: 'GET',
                 success: data => {

@@ -12,7 +12,7 @@
     <div class="offcanvas-body">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link text-dark" @click='route("/index")'>
+          <a class="nav-link text-dark" @click='route("/")'>
             <img src="/images/hintstones/hstone_R.png" class="nav-icon">
             Home
           </a>
