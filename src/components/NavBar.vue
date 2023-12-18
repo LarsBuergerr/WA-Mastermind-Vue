@@ -47,15 +47,14 @@
 </template>
 
 <script>
-export default {
-    name: 'NavBar',
-
-    methods : {
-    route(ref){
-      window.location.href = ref;
-    }
-  },
-}
+  export default {
+      name: 'NavBar',
+      methods : {
+      route(ref){
+        window.location.href = ref;
+      }
+    },
+  }
 </script>
 
 <style scoped>
@@ -104,6 +103,7 @@ export default {
   z-index: 9999;
   background: linear-gradient(to bottom, red, rgb(56, 56, 252)); /* Apply linear gradient to the text color */
   -webkit-background-clip: text; /* Set the background clip to text for webkit browsers */
+  background-clip: text;
   -webkit-text-fill-color: transparent; /* Set the text fill color to transparent for webkit browsers */
 }
 
@@ -156,6 +156,7 @@ export default {
   font-size: 2rem;
   background: linear-gradient(to bottom, red, rgb(56, 56, 252));
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 

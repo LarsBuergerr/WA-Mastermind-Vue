@@ -316,7 +316,6 @@ export default {
             },
 
             async initMultiplayer() {
-            console.log("fjdksafhdsaljfhsdal");
             // check if path is multiplayer if yes then init multiplayer
             console.log(window.location.pathname);
             await this.webSocketInit();
@@ -425,5 +424,351 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
+
+.stones img {
+  filter: brightness(0.3);
+}
+
+.stones img:hover {
+  animation: glow 1s alternate, hover 1s alternate;
+  filter: brightness(0.7);
+  transform: translateY(-5px);
+}
+
+.stones img:not(:hover) {
+  animation: reset 1s ease-out; /* Add separate animation for smooth reset */
+}
+
+@keyframes reset {
+  0% {
+    filter: brightness(0.7);
+    transform: translateY(-5px);
+  }
+  100% {
+    filter: brightness(0.3);
+    transform: translateY(0);
+  }
+}
+
+
+@keyframes glow {
+  0% {
+    filter: brightness(0.3);
+  }
+  100% {
+    filter: brightness(0.7); /* Adjust the brightness level for the glowing effect */
+  }
+}
+
+@keyframes hover {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-5px);
+  }
+}
+
+.game {
+  position: absolute;
+  width: 100%;
+  top: 100vh;
+  left: 0;
+  height: 95vh;
+  z-index: 4;
+}
+
+/* Apply settings so image on mobile devices */
+@media only screen and (max-width: 1080px) { 
+
+  .front_text {
+    font-size: 7em;
+    margin-top: -900px;
+  }
+
+  .stone_B,
+  .stone_G,
+  .stone_R,
+  .stone_Y,
+  .stone_W,
+  .stone_P {
+    display: none;
+  }
+
+  .stone_win {
+    top: 10%;
+    width: 180%;
+    left: -40%;
+    pointer-events: none;
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(8px); /* Adjust the blur value as needed */
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 9998;
+}
+
+.hover-div {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(to bottom, #ff0909, rgb(152, 9, 255), #4117ff);
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  text-align: center;
+}
+
+.hover-div h1 {
+  margin: 0;
+  font-size: 24px;
+  color: #ffffff;
+}
+
+.token-box {
+  display: inline-block;
+  padding: 10px;
+  background-color: #666666;
+  color: #ffffff;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 15px;
+  transition: background-color 0.3s ease;
+  position: relative; /* Added relative positioning for the pseudo-element */
+}
+
+.token-box:hover {
+  background-color: #777777; /* Darker gray on hover */
+}
+.header-image {
+  margin-top: 2rem;
+  max-width: 50rem;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 1;
+}
+
+/* sparticles */
+.sparticles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* This places the canvas below other content */
+}
+
+/* game container */
+.game-container {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.game-box,
+.hintstone-box {
+  background-color: rgb(87, 87, 87);
+  border-radius: 1rem;
+  padding: 1rem;
+  display: inline-block;
+  margin: 0 10px; /* Add margin between the two boxes */
+  z-index: 1;
+  flex-direction: row;
+}
+
+.game-row {
+  display: flex;
+}
+
+/* Style the stones */
+.stone-cell,
+.stone-cell-locked,
+.hintstone-cell {
+  width: 3rem;
+  margin: 0.2rem;
+  border-radius: 50%;                 /* Make the cell round */
+  transition: background-color 0.3s;  /* Smooth color transition on hover */
+  cursor: ns-resize;
+}
+
+.stone-cell:hover {
+  animation: glow 1s infinite alternate, scrollIndication 1s infinite linear;
+}
+
+
+/* place stones button animation */
+.placeStonesButton {
+  width: 15rem;
+  height: 3rem;
+  border: none;
+  outline: none;
+  color: #fff;
+  background: #111;
+  cursor: pointer;
+  font-size: 1.2em;
+  font-weight: 700;
+  position: relative;
+  z-index: 1;
+  border-radius: 1rem;
+  margin: auto;
+  display: block;
+}
+
+.placeStonesButton:before {
+  content: '';
+  background:  linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #002bff, #7a00ff, #ff00c8, #ff0000);
+  position: absolute;
+  top: -2px;
+  left:-2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity .3s ease-in-out;
+  border-radius: 10px;
+}
+
+.placeStonesButton:active {
+  color: rgb(87, 87, 87);
+}
+
+.placeStonesButton:active:after {
+  background: transparent;
+}
+
+.placeStonesButton:hover:before {
+  opacity: 1;
+}
+
+.placeStonesButton:after {
+  z-index: -1;
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgb(87, 87, 87);;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+/* Style the error popup */
+.error-popup {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background-color: red;
+  color: white;
+  padding: 1rem;
+  border-radius: 5px;
+  opacity: 1;
+  transition: opacity 1s;
+}
+
+
+/* Keyframe Animation glow */
+@keyframes glowing {
+  0% { background-position: 0 0; }
+  50% { background-position: 400% 0; }
+  100% { background-position: 0 0; }
+}
+
+@keyframes glow {
+  0% {
+    background-color: transparent;
+    box-shadow: 0 0 5px 3px rgba(255, 0, 0, 0.5);
+  }
+  50% {
+    background-color: transparent;
+    box-shadow: 0 0 10px 5px rgba(0, 21, 255, 0.9);
+  }
+  100% {
+    background-color: transparent;
+    box-shadow: 0 0 15px 3px rgba(48, 0, 121, 0.5);
+  }
+}
+
+@keyframes scrollIndication {
+  0% {
+    transform: translateY(-2px);
+  }
+  50% {
+    transform: translateY(2px);
+  }
+  100% {
+    transform: translateY(-2px);
+  }
+}
+
+/* Increase font size and icon size on small screens */
+@media (max-width: 1080px) {
+
+  .logo-img {
+    margin-top: 7.5rem;
+    max-width: 60rem;
+  }
+
+  /* Style the stones */
+  .stone-cell,
+  .stone-cell-locked,
+  .hintstone-cell {
+    width: 6.5rem;
+  }
+
+  .placeStonesButton{
+    width: 55rem;
+    height: 10rem;
+    font-size: 5em;
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .error-popup {
+    width: 55rem; /* Increase the width */
+    font-size: 2.8rem;;
+    height: auto; /* Increase the height */
+    position: relative; /* Set the position to relative */
+    margin: auto; /* Center the popup */
+    bottom: 0; /* Position the popup at the bottom */
+    right: auto;
+    margin-bottom: 2rem;
+  }
+}
+
+.spinner {
+    margin: 100px auto;
+    width: 5em;
+    height: 5em;
+    border: 0.8em solid rgba(87, 87, 87, 0.2);
+    border-radius: 50%;
+    border-top-color: #3498db;
+    animation: spin 2s linear infinite, colorChange 5s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
 </style>

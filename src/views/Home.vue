@@ -1,31 +1,28 @@
 <template>
-<body>
-  <div class="container-fluid full-layout" id="container_all">
-      <NavBar/>
-      <IndexStones/>
-      <GameBoard/>
+  <div class="home">
+    <NavBar/>
+    <IndexStones/>
+    <GameBoard/>
   </div>
-</body>
 </template>
 
 <script>
 import NavBar from '@/components/NavBar.vue';
 import IndexStones from '@/components/IndexStones.vue';
 import GameBoard from '@/components/GameBoard.vue';
-
 export default {
   name: 'Home-View',
   components: {
     NavBar,
     IndexStones,
-    GameBoard
+    GameBoard,
   },
 }
 </script>
 
 <style scoped>
-body {
+.home {
   background-color: rgb(41, 41, 41);
-  font-family: Arial, sans-serif;
+  height: 200vh;
 }
 </style>
