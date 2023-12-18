@@ -21,4 +21,16 @@ export async function post(url){
     });
 }
 
+export async function get(url) {
+    const req = SERVER_URL + url;
+    console.log(req);
+    return await fetch(req, {
+        method: 'GET',
+        headers: {
+            'Accept': 'application/json */*',
+            'Content-Type': 'application/json'
+        },
+    }).then(response => response.json());
+}
+
 createApp(App).use(router).mount('#app')

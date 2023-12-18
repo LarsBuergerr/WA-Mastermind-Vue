@@ -23,7 +23,7 @@
 
 <script>
 import $ from 'jquery';
-import {post} from '../main.js';
+import {get} from '../main.js';
 
 export default {
     name: 'GameBoard',
@@ -183,16 +183,16 @@ export default {
             var matrixRows = data.matrix.map(function (row) {
                 return row.cells.map(function (cell) {
                 if (row.row === currentTurn) {
-                    return '<img src="/assets/images/stones/stone_A.png" class="stone-cell">';
+                    return '<img src="/images/stones/stone_A.png" class="stone-cell">';
                 } else {
-                    return '<img src="/assets/images/stones/stone_' + cell.value + '.png" class="stone-cell-locked">';
+                    return '<img src="/images/stones/stone_' + cell.value + '.png" class="stone-cell-locked">';
                 }
                 }).join('');
             });
             // Update hint stone rows
             var hintstoneRows = data.hmatrix.map(function (row) {
                 return row.cells.map(function (cell) {
-                return '<img src="/assets/images/hintstones/hstone_' + cell.value + '.png" class="hintstone-cell">';
+                return '<img src="/images/hintstones/hstone_' + cell.value + '.png" class="hintstone-cell">';
                 }).join('');
             });
                 // Update the game box HTML
@@ -256,9 +256,10 @@ export default {
             });
             },
 
-            displayGame() {
-                let data = this.getJSON("game/displayGame")
-                this.updateGameField(data);
+            async displayGame() {
+                let res = await get("game/displayGame")
+                console.log(res)
+                this.updateGameField(res);
             },
         /* ------------------------- Multiplayer ------------------------- */
 
@@ -388,7 +389,7 @@ export default {
             // check if every hintstone is red in the last row
             if (data.status === "win") {  // ----- WIN GAME -----
                 $('.header-image').fadeOut('slow', () =>{
-                $(this).attr('src', '/assets/images/won.png').fadeIn('slow');
+                $(this).attr('src', '/images/won.png').fadeIn('slow');
                 });
                 console.log("You won!");
                 this.renderWinGameField(data.game)
@@ -396,12 +397,12 @@ export default {
                 $('.placeStonesButton').off('click').on('click', this.startNewGame).text('Start New Game');
             } else if (data.status === "lose") {  // ----- LOSE GAME -----
                 $('.header-image').fadeOut('slow', () => {
-                $(this).attr('src', '/assets/images/loose.png').fadeIn('slow');
+                $(this).attr('src', '/images/loose.png').fadeIn('slow');
                 });
                 $('<link>')
                 .appendTo('head')
                 .attr({type : 'text/css', rel : 'stylesheet'})
-                .attr('href', '/assets/stylesheets/displayLoosePage.css');  
+                .attr('href', '/stylesheets/displayLoosePage.css');  
                 console.log("You lost!");
                 this.renderLooseGameField(data.game)
                 // Change the function of the "Place Stone" button to start a new game
@@ -411,15 +412,6 @@ export default {
                 this.updateGameField(data);
             }
         },
-        getJSON(url) {
-            let data = post(url);
-            if (data.ok) {
-                console.log("page loaded");
-                return data;
-            } else {
-                console.log("page failed loading");
-            }
-        }
     },
 
     created() {
