@@ -23,7 +23,7 @@
 
 <script>
 import $ from 'jquery';
-import {get} from '../main.js';
+import {get, post} from '../main.js';
 
 export default {
     name: 'GameBoard',
@@ -89,7 +89,7 @@ export default {
                 } else {
                 current_stone = possible_stones[(possible_stones.indexOf(current_stone) - 1 + possible_stones.length) % possible_stones.length];
                 }
-                element.src = "/assets/images/stones/stone_" + current_stone + ".png";
+                element.src = "/images/stones/stone_" + current_stone + ".png";
                 _this.stoneArray[pos] = current_stone;
             }
             
@@ -98,7 +98,7 @@ export default {
                 element.addEventListener('click', function() {
                 console.log("click triggered");
                 current_stone = possible_stones[(possible_stones.indexOf(current_stone) + 1) % possible_stones.length];
-                element.src = "/assets/images/stones/stone_" + current_stone + ".png";
+                element.src = "/images/stones/stone_" + current_stone + ".png";
                 _this.stoneArray[pos] = current_stone;
                 });
             } else {
@@ -122,10 +122,7 @@ export default {
                 this.createErrorPopup("Please fill all stones before placing them!");
             } else {
                 var stoneArrayString = _this.stoneArray.join("");
-                $.ajax({
-                url: '/game/placeStones/' + stoneArrayString,
-                type: 'GET',
-                success: data => {
+                get('/game/placeStones/' + stoneArrayString).then(data => {
                     console.log(data);
                     // Check data if game is over or not
                     if (data.status === "win") {  // ----- WIN GAME -----
@@ -152,9 +149,8 @@ export default {
                     } else {  // ----- GAME CONTINUES -----
                     this.updateGameField(data);
                     }
-                }
-                });
-            }
+                }); 
+                } 
             },
 
             startNewGame() {
@@ -257,11 +253,11 @@ export default {
             },
 
             async displayGame() {
-                let res = await get("game/displayGame")
+                let res = await get("/game/displayGame")
                 console.log(res)
                 this.updateGameField(res);
             },
-        /* ------------------------- Multiplayer ------------------------- */
+            /* ------------------------- Multiplayer ------------------------- */
 
             webSocketInit() {
             let _this = this;
@@ -304,13 +300,7 @@ export default {
 
             async gameChanges(url) {
             let _this = this;
-            const res = await fetch(url, {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json */*',
-                    'Content-Type': 'application/json'},
-                body: ""
-            })
+            const res = await post(url);
             if (await res.ok) {
                 console.log("page loaded");
                 _this.socket.send("refresh");
