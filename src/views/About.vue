@@ -50,7 +50,7 @@
 <style scoped>
   .about {
     background-color: rgb(41, 41, 41);
-    height: 100vh;
+    height: 200vh;
   }
 
   .container {
