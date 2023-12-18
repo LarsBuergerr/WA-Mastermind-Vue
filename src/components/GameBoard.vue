@@ -144,7 +144,7 @@ export default {
                     $('.placeStonesButton').off('click').on('click', this.startNewGame).text('Start New Game');
                     //ameInProgress = false;
                     } else {  // ----- GAME CONTINUES -----
-                    this.updateGameField(data);
+                    this.updateGameField(data.game);
                     }
                 }); 
                 } 
@@ -250,9 +250,10 @@ export default {
             },
 
             async displayGame() {
+                console.log("DISPLAY GAME DU HURENSOHN")
                 let res = await get("/game/displayGame")
                 console.log(res)
-                this.updateGameField(res);
+                this.updateGameField(res.game);
             },
             /* ------------------------- Multiplayer ------------------------- */
 

@@ -37,9 +37,9 @@ export default {
     
     multiplayer_create_init() {
         $("document").ready( () => {
-        $("#create_multiplayer").click( () => {
+        $("#create_multiplayer").click( async () => {
             this.setCookies("", "player1");
-            get("/game_multiplayer/" + this.getCookie("game") + "/" + this.getCookie("name"))
+            await get("/game_multiplayer/" + this.getCookie("game") + "/" + this.getCookie("name"))
             window.location.href = "/game_multiplayer/multiplayer";
         })
         })
