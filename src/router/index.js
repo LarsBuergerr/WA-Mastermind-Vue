@@ -13,16 +13,25 @@ const router = createRouter({
       path: "/",
       name: "home",
       component: Home,
+      meta: {
+        title: 'Mastermind Online',
+      },
     },
     {
       path: "/about",
       name: "about",
       component: About,
+      meta: {
+        title: 'Mastermind About',
+      },
     },
     {
       path: "/help",
       name: "help",
       component: Help,
+      meta: {
+        title: 'Mastermind Help',
+      },
     },
     {
       path: "/game_multiplayer/createMultiplayer",

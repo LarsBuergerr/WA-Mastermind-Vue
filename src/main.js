@@ -33,4 +33,10 @@ export async function get(url) {
   }).then(response => response.json());
 }
 
+// Set the title of the page
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title || 'Mastermind Online';
+  next();
+});
+
 createApp(App).use(router).mount('#app')
