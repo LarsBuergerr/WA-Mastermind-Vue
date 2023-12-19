@@ -1,13 +1,14 @@
 <template>
-    <div class="multiplayer">
-      <NavBar/>
-      <GameBoard/>
-    </div>
-  </template>
+  <div class="multiplayer">
+    <NavBar/>
+    <GameBoard/>
+  </div>
+</template>
   
-  <script>
-  import NavBar from '@/components/NavBar.vue';
-  import GameBoard from '@/components/GameBoard.vue';
+<script>
+  import NavBar     from '@/components/NavBar.vue';
+  import GameBoard  from '@/components/GameBoard.vue';
+  
   export default {
     name: 'Multiplayer-View',
     components: {
@@ -15,15 +16,14 @@
       GameBoard,
     },
   }
-  </script>
+</script>
   
-  <style scoped>
+<style scoped>
   .multiplayer {
     background: rgb(41, 41, 41);
     height: 100vh;
   }
   .game{
-  top: 0;
-}   
-
-  </style>
+    top: 0;
+  }   
+</style>

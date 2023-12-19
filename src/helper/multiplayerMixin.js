@@ -1,7 +1,5 @@
-const multiplayerMixin = {
-
+export default {
   methods: {
-
     createHash() {
       let result = '';
       let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -27,8 +25,5 @@ const multiplayerMixin = {
       const parts = value.split(`; ${name}=`);
       if (parts.length === 2) return parts.pop().split(';').shift();
     },
-
   }
 }
-
-export default multiplayerMixin;
