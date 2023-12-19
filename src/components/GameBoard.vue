@@ -33,6 +33,7 @@
       return {
         stoneArray: ["E", "E", "E", "E"],
         eventListeners: [],
+        placeStonesHandler: null,
         socket : undefined,
       }
     },
@@ -56,14 +57,15 @@
 
           // Place stones button click event
           var placeStonesButton = document.querySelector(".placeStonesButton");
-          placeStonesButton.addEventListener("click", () => {
+          this.placeStonesHandler = () => {
             if(isMultiplayer) {
               this.gameChanges("/game_multiplayer/placeStones/"+this.getCookie("game")+"/"+_this.stoneArray.join(""));
             } else {
               console.log("place stones clicked");
               this.placeStones();
             }
-          });
+          };
+          placeStonesButton.addEventListener("click", this.placeStonesHandler);
         });
       },
 
@@ -128,6 +130,7 @@
           get('/game/placeStones/' + stoneArrayString).then(data => {
             console.log("[INFO]  Server response: ");
             console.log(data);
+            var placeStonesButton = document.querySelector(".placeStonesButton");
 
             // Check data if game is over or not
             if (data.status === "win") {  // ----- WIN GAME -----
@@ -136,16 +139,21 @@
               });
               this.renderEndGameField(data.game, '/images/stones/stone_win.png', '/images/hintstones/hstone_R.png');
               // Change the function of the "Place Stone" button to start a new game
-              $('.placeStonesButton').off('click').on('click', this.startNewGame).text('Start New Game');
-              console.log("You won!");
+              placeStonesButton.removeEventListener("click", this.placeStonesHandler);
+              placeStonesButton.addEventListener("click", this.startNewGame);
+              placeStonesButton.innerHTML = "Start New Game";
+              console.log("[INFO]  You won!");
             } else if (data.status === "lose") {  // ----- LOSE GAME -----
               $('.header-image').fadeOut('slow', function () {
                 $(this).attr('src', '/images/loose.png').fadeIn('slow');
               });
               this.renderEndGameField(data.game, '/images/stones/stone_R.png', '/images/hintstones/hstone_E.png');
               // Change the function of the "Place Stone" button to start a new game
-              $('.placeStonesButton').off('click').on('click', this.startNewGame).text('Start New Game');
-              console.log("You lost!");
+              console.log("Change the function of the \"Place Stone\" button to start a new game");
+              placeStonesButton.removeEventListener("click", this.placeStonesHandler);
+              placeStonesButton.addEventListener("click", this.startNewGame);
+              placeStonesButton.innerHTML = "Start New Game";
+              console.log("[INFO]  You lost!");
             } else {  // ----- GAME CONTINUES -----
               this.updateGameField(data.game);
             }
@@ -163,7 +171,10 @@
           $(this).attr('src', '/images/mastermind_header_cropped.png').fadeIn('slow');
         });
         // Change the function of the "Place Stone" button back to place stones
-        $('.placeStonesButton').off('click').text('Place Stones');
+        var placeStonesButton = document.querySelector(".placeStonesButton");
+        placeStonesButton.removeEventListener("click", this.startNewGame);
+        placeStonesButton.addEventListener("click", this.placeStonesHandler);
+        placeStonesButton.innerHTML = "Place Stones";
       },
 
       updateGameField(data) {
@@ -332,6 +343,8 @@
       },
 
       showWaitingForJoinDiv(gameToken) {
+        // Store a reference to the Vue component to call copy to clipboard later
+        var vm = this;
         // Create the overlay and hover-div elements
         var overlay = $('<div class="overlay"></div>');
         var hoverDiv = $('<div class="hover-div"><h1>Waiting for other player to join: </h1></div>');
@@ -342,15 +355,15 @@
         // Create a text element
         var textElement = $('<h1>Your game hash is:</h1>');
         // Change the color and text of the token box when clicked
-        tokenBox.click( () => {
+        tokenBox.click(function() {
           var self = $(this);
           self.css('background-color', 'green');
           self.text('Copied to clipboard!');
-          this.copyToClipboard(gameToken);
-          setTimeout( function() {
-          self.css('background-color', ''); // Change this to the original color
-          self.text(gameToken); // Change the text back to the game token
-          }, 500);
+          vm.copyToClipboard(gameToken);
+          setTimeout(function() {
+            self.css('background-color', ''); // Change this to the original color
+            self.text(gameToken); // Change the text back to the game token
+          }, 1000);
         });
         // Append the elements to the body
         $('body').append(overlay.append(hoverDiv.append(spinner, textElement, tokenBox)));
@@ -548,6 +561,7 @@
   .token-box:hover {
     background-color: #777777; /* Darker gray on hover */
   }
+
   .header-image {
     margin-top: 2rem;
     max-width: 50rem;
@@ -712,6 +726,37 @@
     }
   }
 
+  .spinner {
+    margin: 100px auto;
+    width: 5em;
+    height: 5em;
+    border: 0.8em solid rgba(87, 87, 87, 0.2);
+    border-radius: 50%;
+    border-top-color: #3498db;
+    animation: spin 2s linear infinite, colorChange 5s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes colorChange {
+    0% {
+      border-top-color: red;
+    }
+    50% {
+      border-top-color: blue;
+    }
+    100% {
+      border-top-color: red;
+    }
+  }
+
   /* Increase font size and icon size on small screens */
   @media (max-width: 1080px) {
 
@@ -747,25 +792,6 @@
       bottom: 0; /* Position the popup at the bottom */
       right: auto;
       margin-bottom: 2rem;
-    }
-  }
-
-  .spinner {
-    margin: 100px auto;
-    width: 5em;
-    height: 5em;
-    border: 0.8em solid rgba(87, 87, 87, 0.2);
-    border-radius: 50%;
-    border-top-color: #3498db;
-    animation: spin 2s linear infinite, colorChange 5s linear infinite;
-  }
-
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
     }
   }
 
