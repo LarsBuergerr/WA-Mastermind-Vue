@@ -5,7 +5,8 @@ import router from './router/';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "jquery/dist/jquery.min.js";
-import './registerServiceWorker'
+import './registerServiceWorker';
+import { useAddToHomescreen  } from '@owliehq/vue-addtohomescreen';
 
 export const SERVER_URL = "http://127.0.0.1:9000";
 
@@ -40,4 +41,6 @@ router.beforeEach((to, from, next) => {
   next();
 });
 
-createApp(App).use(router).mount('#app')
+const app = createApp(App).use(router);
+app.use(useAddToHomescreen);
+app.mount('#app');
