@@ -8,7 +8,7 @@ import "jquery/dist/jquery.min.js";
 import './registerServiceWorker';
 import { useAddToHomescreen  } from '@owliehq/vue-addtohomescreen';
 
-export const SERVER_URL = "http://127.0.0.1:9000";
+export const SERVER_URL = "https://deploy-wa-mastermind.koyeb.app";
 
 export async function post(url){
   const req = SERVER_URL + url;
