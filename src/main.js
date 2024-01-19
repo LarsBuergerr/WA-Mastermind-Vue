@@ -5,6 +5,7 @@ import router from './router/';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "jquery/dist/jquery.min.js";
+import './registerServiceWorker'
 
 export const SERVER_URL = "http://127.0.0.1:9000";
 
