@@ -6,7 +6,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "jquery/dist/jquery.min.js";
 import './registerServiceWorker';
-import { useAddToHomescreen  } from '@owliehq/vue-addtohomescreen';
 
 export const SERVER_URL = "https://deploy-wa-mastermind.koyeb.app";
 
@@ -41,6 +40,4 @@ router.beforeEach((to, from, next) => {
   next();
 });
 
-const app = createApp(App).use(router);
-app.use(useAddToHomescreen);
-app.mount('#app');
+createApp(App).use(router).mount('#app');
