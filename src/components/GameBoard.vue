@@ -274,7 +274,7 @@
 
       webSocketInit() {
         let _this = this;
-        _this.socket = new WebSocket("ws://127.0.0.1:9000/ws/"+ this.getCookie("game"));
+        _this.socket = new WebSocket("ws://https://deploy-wa-mastermind.koyeb.app/ws/"+ this.getCookie("game"));
         console.log("socket created")
             
         console.log("game loaded")
