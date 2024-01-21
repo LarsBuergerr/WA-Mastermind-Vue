@@ -24,8 +24,8 @@
 </template>
 
 <script>
-  import {get} from             '@/main.js';
-  import multiplayerMixin from  '@/helper/multiplayerMixin.js';
+  import {get} from             '../main.js';
+  import multiplayerMixin from  '../helper/multiplayerMixin.js';
   import $ from                 'jquery';
 
   export default {
@@ -52,5 +52,5 @@
 </script>
 
 <style scoped>
-  @import '@/helper/background.css';
+  @import '../helper/background.css';
 </style>

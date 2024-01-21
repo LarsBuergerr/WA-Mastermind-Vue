@@ -2,7 +2,7 @@
   <div class="about">
     <NavBar/>
     <div class="container">
-      <img src="/images/mastermind_header.png">
+      <img src="images/mastermind_header.png">
       <div class="section">
         <h2>
           Description
@@ -39,7 +39,7 @@
 </template>
 
 <script>
-  import NavBar from '@/components/NavBar.vue';
+  import NavBar from '../components/NavBar.vue';
 
   export default {
     name: 'About-Page',

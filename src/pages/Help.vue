@@ -2,34 +2,34 @@
   <div class="help">
     <NavBar/>
     <div class="container">
-      <img src="/images/mastermind_header.png">
+      <img src="images/mastermind_header.png">
       <div class="section">
         <h2>
           How to play
         </h2>
         <table>
           <tr>
-            <td><img src="/images/coursers/courser_R.png"></td>
+            <td><img src="images/coursers/courser_R.png"></td>
             <td><span> Courser shows the current selected color which is used when placing stones</span></td>
           </tr>
           <tr>
-            <td><img src="/images/info/scroll.png"></td>
+            <td><img src="images/info/scroll.png"></td>
             <td><span> Scroll down your mouse wheel to change the courser color and therefore the stone placing color</span></td>
           </tr>
           <tr>
-            <td><img src="/images/info/left-click.png"></td>
+            <td><img src="images/info/left-click.png"></td>
             <td><span> Place your guess on an empty stone in the current row (see point below)</span></td>
           </tr>
           <tr>
-            <td><img src="/images/stones/stone_A.png"></td>
+            <td><img src="images/stones/stone_A.png"></td>
             <td><span> Empty stone where you can place your hint (Shows the active row)</span></td>
           </tr>
           <tr>
-            <td><img src="/images/hintstones/hstone_W.png"></td>
+            <td><img src="images/hintstones/hstone_W.png"></td>
             <td><span> Hint that shows you that you guess a right color but at the wrong position</span></td>
           </tr>
           <tr>
-            <td><img src="/images/hintstones/hstone_R.png"></td>
+            <td><img src="images/hintstones/hstone_R.png"></td>
             <td><span> Hint that shows you that you guess a right color and at the right position</span></td>
           </tr>
         </table>
@@ -40,11 +40,11 @@
         </h2>
         <table>
           <tr>
-            <td><img src="/images/stones/stone_win.png"></td>
+            <td><img src="images/stones/stone_win.png"></td>
             <td><span> You won the game if you guess the secret code so that all hint stones are red.</span></td>
           </tr>
           <tr>
-            <td><img src="/images/stones/stone_A.png"></td>
+            <td><img src="images/stones/stone_A.png"></td>
             <td><span> You lose the game if you used all your tries and you did not guess the secret code.</span></td>
           </tr>
         </table>
@@ -62,7 +62,7 @@
 </template>
 
 <script>
-  import NavBar from '@/components/NavBar.vue';
+  import NavBar from '../components/NavBar.vue';
 
   export default {
     name: 'Help-Page',

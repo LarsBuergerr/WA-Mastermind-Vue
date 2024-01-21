@@ -2,7 +2,7 @@
   <div class="game">
     <div class="header-container">
       <div class="top-bar"> 
-        <img src="/images/mastermind_header_cropped.png" class="header-image">
+        <img src="images/mastermind_header_cropped.png" class="header-image">
       </div>
       <div class="center" style="text-align: center;">
         <div class="game-container">
@@ -94,7 +94,7 @@
           } else {
             current_stone = possible_stones[(possible_stones.indexOf(current_stone) - 1 + possible_stones.length) % possible_stones.length];
           }
-          element.src = "/images/stones/stone_" + current_stone + ".png";
+          element.src = "images/stones/stone_" + current_stone + ".png";
           _this.stoneArray[pos] = current_stone;
         }
       
@@ -103,7 +103,7 @@
           element.addEventListener('click', function() {
           console.log("click triggered");
           current_stone = possible_stones[(possible_stones.indexOf(current_stone) + 1) % possible_stones.length];
-          element.src = "/images/stones/stone_" + current_stone + ".png";
+          element.src = "images/stones/stone_" + current_stone + ".png";
           _this.stoneArray[pos] = current_stone;
           });
         } else {
@@ -135,9 +135,9 @@
             // Check data if game is over or not
             if (data.status === "win") {  // ----- WIN GAME -----
               $('.header-image').fadeOut('slow', function () {
-                $(this).attr('src', '/images/won.png').fadeIn('slow');
+                $(this).attr('src', 'images/won.png').fadeIn('slow');
               });
-              this.renderEndGameField(data.game, '/images/stones/stone_win.png', '/images/hintstones/hstone_R.png');
+              this.renderEndGameField(data.game, 'images/stones/stone_win.png', 'images/hintstones/hstone_R.png');
               // Change the function of the "Place Stone" button to start a new game
               placeStonesButton.removeEventListener("click", this.placeStonesHandler);
               placeStonesButton.addEventListener("click", this.startNewGame);
@@ -145,9 +145,9 @@
               console.log("[INFO]  You won!");
             } else if (data.status === "lose") {  // ----- LOSE GAME -----
               $('.header-image').fadeOut('slow', function () {
-                $(this).attr('src', '/images/loose.png').fadeIn('slow');
+                $(this).attr('src', 'images/loose.png').fadeIn('slow');
               });
-              this.renderEndGameField(data.game, '/images/stones/stone_R.png', '/images/hintstones/hstone_E.png');
+              this.renderEndGameField(data.game, 'images/stones/stone_R.png', 'images/hintstones/hstone_E.png');
               // Change the function of the "Place Stone" button to start a new game
               console.log("Change the function of the \"Place Stone\" button to start a new game");
               placeStonesButton.removeEventListener("click", this.placeStonesHandler);
@@ -168,7 +168,7 @@
         this.updateGameField(res.game);
         // Change the header image back to the original
         $('.header-image').fadeOut('slow', function() {
-          $(this).attr('src', '/images/mastermind_header_cropped.png').fadeIn('slow');
+          $(this).attr('src', 'images/mastermind_header_cropped.png').fadeIn('slow');
         });
         // Change the function of the "Place Stone" button back to place stones
         var placeStonesButton = document.querySelector(".placeStonesButton");
@@ -189,9 +189,9 @@
         var matrixRows = data.matrix.map(function (row) {
           return row.cells.map(function (cell) {
           if (row.row === currentTurn) {
-            return '<img src="/images/stones/stone_A.png" class="stone-cell">';
+            return '<img src="images/stones/stone_A.png" class="stone-cell">';
           } else {
-            return '<img src="/images/stones/stone_' + cell.value + '.png" class="stone-cell-locked">';
+            return '<img src="images/stones/stone_' + cell.value + '.png" class="stone-cell-locked">';
           }
           }).join('');
         });
@@ -199,7 +199,7 @@
         // Update hint stone rows
         var hintstoneRows = data.hmatrix.map(function (row) {
             return row.cells.map(function (cell) {
-            return '<img src="/images/hintstones/hstone_' + cell.value + '.png" class="hintstone-cell">';
+            return '<img src="images/hintstones/hstone_' + cell.value + '.png" class="hintstone-cell">';
             }).join('');
         });
 
@@ -274,7 +274,7 @@
 
       webSocketInit() {
         let _this = this;
-        _this.socket = new WebSocket("ws://127.0.0.1:9000/ws/"+ this.getCookie("game"));
+        _this.socket = new WebSocket("ws://deploy-wa-mastermind.koyeb.app/ws/"+ this.getCookie("game"));
         console.log("socket created")
             
         console.log("game loaded")
@@ -391,7 +391,7 @@
         // check if every hintstone is red in the last row
         if (data.status === "win") {  // ----- WIN GAME -----
           $('.header-image').fadeOut('slow', () =>{
-            $(this).attr('src', '/images/won.png').fadeIn('slow');
+            $(this).attr('src', 'images/won.png').fadeIn('slow');
           });
           this.renderWinGameField(data.game)
           // Change the function of the "Place Stone" button to start a new game
@@ -399,7 +399,7 @@
           console.log("You won!");
         } else if (data.status === "lose") {  // ----- LOSE GAME -----
           $('.header-image').fadeOut('slow', () => {
-        $(this).attr('src', '/images/loose.png').fadeIn('slow');
+        $(this).attr('src', 'images/loose.png').fadeIn('slow');
           });
           $('<link>')
           .appendTo('head')

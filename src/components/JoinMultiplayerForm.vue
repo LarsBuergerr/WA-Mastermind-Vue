@@ -30,7 +30,7 @@
 </template>
 
 <script>
-  import multiplayerMixin   from '@/helper/multiplayerMixin.js';
+  import multiplayerMixin   from '../helper/multiplayerMixin.js';
   import $                  from 'jquery';
 
   export default {
@@ -57,5 +57,5 @@
 </script>
 
 <style scoped>
-  @import '@/helper/background.css';
+  @import '../helper/background.css';
 </style>

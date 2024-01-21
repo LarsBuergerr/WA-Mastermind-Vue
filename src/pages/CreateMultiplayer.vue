@@ -6,8 +6,8 @@
 </template>
   
 <script>
-  import NavBar from '@/components/NavBar.vue';
-  import CreateMultiplayerForm from '@/components/CreateMultiplayerForm.vue';
+  import NavBar from '../components/NavBar.vue';
+  import CreateMultiplayerForm from '../components/CreateMultiplayerForm.vue';
   
   export default {
     name: 'Create-Multiplayer-View',

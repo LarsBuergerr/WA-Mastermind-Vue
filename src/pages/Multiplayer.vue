@@ -6,8 +6,8 @@
 </template>
   
 <script>
-  import NavBar     from '@/components/NavBar.vue';
-  import GameBoard  from '@/components/GameBoard.vue';
+  import NavBar     from '../components/NavBar.vue';
+  import GameBoard  from '../components/GameBoard.vue';
   
   export default {
     name: 'Multiplayer-View',

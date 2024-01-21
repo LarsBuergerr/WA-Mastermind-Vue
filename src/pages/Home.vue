@@ -7,9 +7,9 @@
 </template>
 
 <script>
-  import NavBar       from '@/components/NavBar.vue';
-  import IndexStones  from '@/components/IndexStones.vue';
-  import GameBoard    from '@/components/GameBoard.vue';
+  import NavBar       from '../components/NavBar.vue';
+  import IndexStones  from '../components/IndexStones.vue';
+  import GameBoard    from '../components/GameBoard.vue';
 
   export default {
     name: 'Home-View',
