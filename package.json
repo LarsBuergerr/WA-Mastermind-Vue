@@ -10,7 +10,6 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
-    "@owliehq/vue-addtohomescreen": "^2.0.3",
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.2.3",
     "core-js": "^3.8.3",
